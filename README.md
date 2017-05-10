@@ -1,21 +1,50 @@
-# Url Shortening App
+## Dockerfile for MEAN based URL Shortener application
 
-Url Shortening app built with Node API along with MongoDB and Angular. For demonstration purposes and a tutorial.
+This Dockerfile will create a working Docker environment for [URL Shortener] (https://github.com/chamanklalwani/urlshortener) application.
 
-Node provides the RESTful API. Angular provides the frontend and accesses the API. MongoDB stores like a hoarder.
+### Prerequisites
 
-## Requirements
+* Install Docker on your machine.
 
-- [Node and npm](http://nodejs.org)
-- MongoDB: Make sure you have your own local or remote MongoDB database URI configured in `config/database.js`
+### TL;DR
+```
+# Pull Mongo image from DockerHub and start it
+docker pull mongo
+docker run -p 27017:27017 -d --name db mongo
 
-## Installation
+# Build urlshorten image and run it
+docker build -t urlshorten .
+docker run -p 3000:3000 -p 35729:35729 --name urlshorten --link db:db urlshorten
 
-1. Clone the repository: `https://github.com/chamanklalwani/urlshortener.git`
-2. Install the application: `npm install`
-3. Place your own MongoDB URI in `config/database.js`
-3. Start the server: `node server.js`
-4. View in browser at `http://localhost:8080` configure port as mentioned in server.js
+
+### Run manually
+
+
+### Pull and run MongoDB Docker container from Docker Hub
+
+```
+docker pull mongo
+```
+
+```
+docker run -p 27017:27017 -d --name db mongo
+```
+
+This will run MongoDB container from Docker Hub as a background process (`-d` option) with `db` name and with port `27017` exposed.
+
+### Build and Run "URL Shorten" app image:
+
+```
+docker build -t urlshorten .
+```
+
+This will build a Docker image using current repository. After this, we can run our own Docker container:
+
+```
+docker run -p 3000:3000 -p 35729:35729 --name mean --link db:db mean
+```
+
+This will run our own container (which will install prerequisites and Node.js), with ports `3000` (Node.js), `27017` (MongoDB) and `35729` (LiveReload) exposed; a link between our image and MongoDB image will be created using `--link` option.
 
 
 
