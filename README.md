@@ -1,6 +1,6 @@
 ## Dockerfile for MEAN based URL Shortener application
 
-This Dockerfile will create a working Docker environment for [URL Shortener] (https://github.com/chamanklalwani/urlshortener) application.
+This Dockerfile will create a working Docker environment for [URL Shortener](https://github.com/chamanklalwani/urlshortener) application.
 
 ### Prerequisites
 
@@ -15,12 +15,12 @@ docker run -p 27017:27017 -d --name db mongo
 # Build urlshorten image and run it
 docker build -t urlshorten .
 docker run -p 3000:3000 -p 35729:35729 --name urlshorten --link db:db urlshorten
-
+```
 
 ### Run manually
 
 
-### Pull and run MongoDB Docker container from Docker Hub
+Pull and run MongoDB Docker container from Docker Hub
 
 ```
 docker pull mongo
