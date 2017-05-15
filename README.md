@@ -41,7 +41,7 @@ docker build -t urlshorten .
 This will build a Docker image using current repository. After this, we can run our own Docker container:
 
 ```
-docker run -p 3000:3000 -p 35729:35729 --name mean --link db:db mean
+docker run -p 3000:3000 -p 35729:35729 --name urlshorten --link db:db urlshorten
 ```
 
 This will run our own container (which will install prerequisites and Node.js), with ports `3000` (Node.js), `27017` (MongoDB) and `35729` (LiveReload) exposed; a link between our image and MongoDB image will be created using `--link` option.
